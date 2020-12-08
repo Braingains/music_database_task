@@ -19,7 +19,8 @@ artist_repository.update(artist_1)
 album_1.title = 'Animals'
 album_repository.update(album_1)
 
-artist_repository.delete('Pink Floyd')
+# artist_repository.delete(artist_1)
+#can't adapt type 'builtin_function_or_method'
 
 res = artist_repository.select_all()
 for artist in res:
@@ -30,8 +31,10 @@ for album in res:
     print(album.__dict__)
 
 # res = album_repository.list_albums_by_artist(artist_1)
-# for artist in res:
+# for albums in res:
 #     print(album.__dict__)
+#index out of range error
+
 
 
 
