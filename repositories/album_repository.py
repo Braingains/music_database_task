@@ -37,3 +37,25 @@ def select_all():
         album = Album(row['title'], row['genre'], artist, row['id'])
         albums.append(album)
     return albums
+
+def list_albums_by_artist(artist):
+    album = None
+
+    sql = 'SELECT * FROM albums WHERE artist = %s'
+    values = [id]
+    result = run_sql(sql, values)[0]
+
+    if result is not None:
+        artist = artist_repository.select(result['artist_id'])
+        album = Album(result['title'], result['genre'], artist, result['id'])
+    return album 
+
+def update (album):
+    sql = 'UPDATE albums SET (title, genre, artist_id) = (%s, %s, %s) WHERE id = %s'
+    values = [album.title, album.genre, album.artist.id, album.id]
+    run_sql(sql, values)
+
+def delete(id):
+    sql = 'DELETE FROM albums WHERE id = %s'
+    values = [id]
+    run_sql(sql, values)
